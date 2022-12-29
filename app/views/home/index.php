@@ -8,5 +8,7 @@
 </head>
 <body>
     <h1>Hello World!</h1>
+    <p>This is a default location</p>
+    <h2>Oh hi mark!</h2>
 </body>
 </html>
