@@ -1,8 +1,8 @@
 <?php
-class Home extends Controller
+class Contact extends Controller
 {
     function index() {
         // load the index template from the views folder
-        include "../app/views/home/index.php";
+        include "../app/views/contact/index.php";
     }
 }
