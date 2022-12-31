@@ -16,7 +16,7 @@ It contains:
 
 In a terminal, run:
 ```bash
-docker-compose up
+docker-compose up -d 
 ```
 
 NGINX will now serve files in the /public folder. Visit localhost in your browser to check.

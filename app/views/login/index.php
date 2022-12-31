@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/login-stylesheet.css">
     <link rel="shortcut icon" href="favicons/d&d-favicon.png" type="image/x-icon">
     <title>Login</title>
+    <script src="js/switchtab.js"></script>
 </head>
 
 <body class="body-background">
@@ -43,36 +44,3 @@
 </body>
 
 </html>
-
-<script>
-    // Get the sign in and sign up buttons
-    const signInButton = document.querySelector('.sign-in-tab');
-    const signUpButton = document.querySelector('.sign-up-tab');
-    const signInForm = document.querySelector('.sign-in-form');
-    const signUpForm = document.querySelector('.sign-up-form');
-
-    // Add click event listeners to the buttons
-    signInButton.addEventListener('click', () => {
-        // If the sign in button is not active, make it active
-        if (!signInButton.classList.contains('active-tab')) {
-            signUpButton.classList.remove('active-tab');
-            signInButton.classList.add('active-tab');
-        }
-        if (!signInForm.classList.contains('active-form')) {
-            signUpForm.classList.remove('active-form');
-            signInForm.classList.add('active-form');
-        }
-    });
-
-    signUpButton.addEventListener('click', () => {
-        // If the sign up button is not active, make it active
-        if (!signUpButton.classList.contains('active-tab')) {
-            signInButton.classList.remove('active-tab');
-            signUpButton.classList.add('active-tab');
-        }
-        if (!signUpForm.classList.contains('active-form')) {
-            signInForm.classList.remove('active-form');
-            signUpForm.classList.add('active-form');
-        }
-    });
-</script>
