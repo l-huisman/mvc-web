@@ -10,9 +10,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
 
-<body class="body-background">
+<body class="bg-image body-background">
     <section class="vh-100">
-        <div class="container py-5 h-100">
+        <div class="container py-4 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                     <div class="card bg-dark text-white" style="border-radius: 1rem;">
@@ -20,7 +20,7 @@
 
                             <div class="mb-md-3 mt-md-4 pb-5">
 
-                                <h2 class="fw-bold mb-2 text-uppercase">Dungeons and Dates</h2>
+                                <h2 class="fw-bold mb-2 text-uppercase "><a href="home" class="text-decoration-none text-light">Dungeons and Dates</a></h2>
                                 <p class="text-white-50 mb-5">Please enter your login and password!</p>
 
                                 <div class="form-outline form-white mb-4">

@@ -1,5 +1,5 @@
 .body-background {
-    background-image: url(img/dungeons-masters-guide-cover.png);
+    background-image: linear-gradient(to bottom, rgba(66, 29, 66, 0.5), rgba(255, 255, 255, 0)), url(img/dungeons-masters-guide-cover.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
