@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/home-stylesheet.css">
-    <link rel="shortcut icon" href="favicons/d&d-favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="http://localhost/css/home-stylesheet.css">
+    <link rel="shortcut icon" href="http://localhost/favicons/d&d-favicon.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <title>Login</title>
 </head>
@@ -39,7 +39,7 @@
                         <a class="nav-link" href="login">Sign In</a>
                     </li>
                     <li class="nav-item ms-2 d-none d-md-inline">
-                        <a class="btn btn-outline-light bg-dark" href="login">Sign In</a>
+                        <a class="btn btn-outline-light" href="login">Sign In</a>
                     </li>
 
                 </ul>
@@ -58,7 +58,7 @@
                         <div class="display-5">Session schedular</div>
                     </h1>
                     <p class="lead my-4">Never miss another session again!</p>
-                    <a href="login" class="btn btn-outline-light bg-dark btn-lg">Sign In</a>
+                    <a href="login" class="btn btn-outline-light btn-lg">Sign In</a>
                 </div>
                 <div class="col-md-5 text-center d-none d-md-block">
                 </div>
