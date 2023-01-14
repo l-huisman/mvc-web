@@ -19,21 +19,20 @@ class App
             # Check for first part of url which is the controller
             if (file_exists('../app/controllers/' . $url[0] . '.php')) {
                 $this->controller = $url[0];
-                unset($url[0]);
             }
+
+            $this->instanciateController($this->controller);
 
             # Check for second part of url which is the method
             if (isset($url[1])) {
                 if (method_exists($this->controller, $url[1])) {
                     $this->method = $url[1];
-                    unset($url[1]);
                 }
             }
+        } else {
+            $this->instanciateController($this->controller);
         }
 
-        # Require the controller and create an instance
-        require_once '../app/controllers/' . $this->controller . '.php';
-        $this->controller = new $this->controller;
 
         # Check for third part of url which is the parameters to pass to the method if not return an empty array
         $this->params = $url ? array_values($url) : [];
@@ -54,5 +53,13 @@ class App
         $url_parts = array_values($url_parts);
 
         return array_slice($url_parts, 1);
+    }
+
+    protected function instanciateController($controller)
+    {
+        # Require the controller and create an instance
+        require_once '../app/controllers/' . $this->controller . '.php';
+        $this->controller = new $this->controller;
+
     }
 }

@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="http://localhostcss/old-login-stylesheet.css">
-    <link rel="shortcut icon" href="http://localhostfavicons/d&d-favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="/css/old-login-stylesheet.css">
+    <link rel="shortcut icon" href="/favicons/d&d-favicon.png" type="image/x-icon">
     <title>Login</title>
     <script src="js/switchtab.js"></script>
 </head>
