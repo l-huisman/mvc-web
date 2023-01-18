@@ -15,7 +15,6 @@ class Auth
         $user = $this->userRepository->findByEmail($email);
         if (!$user && !password_verify($password, $user->getPassword())) {
             throw new Exception("Invalid email or password");
-            return;
         }
         $this->session->set("user", $user);
     }

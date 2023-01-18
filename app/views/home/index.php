@@ -42,7 +42,7 @@
                         <a class="btn btn-outline-light" href="login">Sign In</a>
                     </li>
 
-                </ul>
+                </ul>!
             </div>
         </div>
     </nav>

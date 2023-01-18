@@ -1,0 +1,6 @@
+.body-background {
+    background-image: linear-gradient(to bottom, rgba(45, 45, 45, 0.5), rgba(35, 35, 35, 0.5)), url(img/monster-manual-cover.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
