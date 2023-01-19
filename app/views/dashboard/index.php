@@ -1,3 +1,7 @@
+<?php
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,11 +17,11 @@
 </head>
 
 
-<body class="bg-image body-background" style="height: 100vh; width: 100%;">
+<body class="bg-image body-background" style="height: 100vh;">
 
     <!-- navbar -->
     <nav class="navbar bg-dark navbar-expand-md navbar-dark pt-3 pb-3">
-        <div class="container-xxl">
+        <div class="container-xl">
             <a class="navbar-brand" href="/">
                 <span class="text-light fw-bold">
                     Dungeons & Dates
@@ -64,13 +68,13 @@
                             Players
                         </a>
                     </li>
-                </ul>!
+                </ul>
                 <div class="dropdown">
                     <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                         <svg class="mx-1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
                             <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z" />
                         </svg>
-                        You
+                        <?php echo "You" ?>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
                         <li><a class="dropdown-item" href="#">Settings</a></li>
@@ -89,8 +93,9 @@
 
     <section id="intro">
         <div class="container-lg mt-5">
-            <div class="row align-items-center">
-                <div class="col-md-4 text-center text-md-start text-dark">
+            <div class="row align-items-start">
+
+                <div class="col-md-3 pb-3 text-center text-md-start text-light">
                     <div class="card h-100 bg-dark">
                         <div class="card-body">
                             <div class="d-flex justify-content-center">
@@ -99,6 +104,21 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="col-md-8 text-center text-md-start text-light">
+                    <div class="card h-100 bg-dark">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-center">
+                                <form id="availability-form" action="submit-availability.php" method="post">
+                                    <table id="calendar">
+                                    </table>
+                                    <button type="submit" class="btn align-self-end mt-3 btn-primary">Submit Availability</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -106,40 +126,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
     </script>
 
-    <script>
-        var ctx = document.getElementById('payingCustomerChart').getContext('2d');
-        var chart = new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: ['Sheduled players', 'Non-scheduled players'],
-                datasets: [{
-                    label: ' number of players',
-                    data: [2, 3],
-                    backgroundColor: [
-                        'rgba(127, 57, 251, 1)',
-                        'rgba(207, 102, 121, 1)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 255, 255, 1)',
-                        'rgba(255, 255, 255, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                legend: {
-                    position: 'bottom',
-                    labels: {
-                        fontSize: 12,
-                        boxWidth: 12
-                    }
-                }
-            }
-        });
-    </script>
+    <script src="/js/piechart.js"></script>
 
+    <script src="/js/calendar.js"></script>
 </body>
 
 </html>
