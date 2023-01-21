@@ -15,6 +15,9 @@ class UserRepository
         $stmt->bindParam(':email', $email);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (!$result) {
+            return null;
+        }
         return new User($result['User_ID'], $result['username'], $result['email'], $result['password'], $result['type']);
     }
 
