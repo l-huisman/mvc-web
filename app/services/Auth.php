@@ -34,6 +34,7 @@ class Auth
         $hashedPassword = $this->hashPassword($password);
         $user = new User(0, $username, $email, $hashedPassword, $type);
         $this->userRepository->insertUser($user);
+        $this->login($email, $password);
     }
 
 

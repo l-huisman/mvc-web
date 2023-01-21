@@ -10,7 +10,7 @@ class Login extends Controller
     function login() {
 
         // load the index template from the views folder
-        include "../app/views/login/login.php";
+        include "../app/views/login/index.php";
     }
 
     function register() {

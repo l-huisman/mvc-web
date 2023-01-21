@@ -41,8 +41,6 @@ class UserRepository
     }
 
     public function insertUser(User $user) {
-        # Print the user object
-        print_r($user);
         try {
             $stmt = $this->connection->prepare("INSERT INTO User (username, email, password, type, Campaign_ID) VALUES (:username, :email, :password, :type , :Campaign_ID)");
             $stmt->bindValue(':username', $user->getUsername());

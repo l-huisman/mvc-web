@@ -51,8 +51,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($email_err) && empty($password_err)) {
         try {
             $auth->login($email, $password);
-            include "../app/views/dashboard/index.php";
-            exit;
         } catch (Exception $e) {
             $password_err = $e->getMessage();
         }

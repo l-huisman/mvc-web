@@ -3,6 +3,7 @@ require_once '../app/models/User.php';
 require_once '../app/repositories/UserRepository.php';
 require_once '../app/services/Auth.php';
 require_once '../app/services/Session.php';
+require_once '../app/controllers/login.php';
 
 # Initialize the session
 $session = new Session();
@@ -18,6 +19,7 @@ try {
     echo "Connection failed: " . $e->getMessage();
 }
 
+# Check if the user is already logged in, if yes then redirect him to welcome page
 $auth = new Auth(new UserRepository($connection), $session);
 
 # Define variables and initialize with empty values
@@ -68,8 +70,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($username_err) && empty($email_err) && empty($password_err) && empty($password_confirm_err)) {
         try {
             $auth->register($username, $email, $password, $type);
-            include "../app/views/login/index.php";
-            exit;
+            if ($auth->isLoggedIn()) {
+                include "../app/views/dashboard/index.php";
+                exit;
+            }
         } catch (Exception $e) {
             $password_err = $e->getMessage();
         }
@@ -101,7 +105,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 </svg></a></button>
                         <div class="card-body p-4 px-5">
                             <div class="mb-md-2 mt-md-1">
-                                <h2 class="fw-bold mb-1 text-uppercase text-center"><a href="home" class="text-decoration-none text-light">Dungeons and Dates</a></h2>
+                                <h2 class="fw-bold mb-1 text-uppercase text-center"><a href="/home" class="text-decoration-none text-light">Dungeons and Dates</a></h2>
                                 <p class="text-white-50 mb-2 text-center">Please enter your login and password!</p>
                                 <form method="post">
                                     <div class="form-outline form-white mb-3 <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
@@ -132,7 +136,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         </select>
                                     </div>
                                     <div class="d-flex justify-content-center">
-                                        <button class="btn btn-outline-light btn-lg" type="submit">Login</button>
+                                        <button class="btn btn-outline-light btn-lg" type="submit">Sign up</button>
                                     </div>
                                 </form>
                             </div>
