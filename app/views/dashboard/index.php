@@ -1,5 +1,6 @@
 <?php
 
+require_once '/app/models/User.php';
 $user = $_SESSION['user'];
 
 ?>
@@ -86,7 +87,7 @@ $user = $_SESSION['user'];
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="logout">Sign out</a></li>
+                        <li><a class="dropdown-item" href="/logout">Sign out</a></li>
                     </ul>
                 </div>
             </div>
@@ -95,23 +96,18 @@ $user = $_SESSION['user'];
 
     <!-- intro -->
 
-
-
-
-
     <section id="intro">
         <?php
         if ($user->getType() == 1) {
             include '/app/views/dashboard/dungeonmaster.php';
+        } else {
+            include '/app/views/dashboard/player.php';
         }
         ?>
     </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
-    </script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <script src="/js/piechart.js"></script>
-
     <script src="/js/calendar.js"></script>
 </body>
 

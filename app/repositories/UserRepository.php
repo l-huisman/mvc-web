@@ -23,30 +23,33 @@ class UserRepository
         if ($user->getUserid()) {
             return $this->update($user);
         }
-        return $this->insert($user);
+        return $this->insertUser($user);
     }
 
     private function update(User $user)
     {
-        $stmt = $this->connection->prepare("UPDATE User SET username = :username, email = :email, password = :password, usertype = :usertype, availability = :availability WHERE User_ID = :User_ID");
+        $stmt = $this->connection->prepare("UPDATE User SET username = :username, email = :email, password = :password, usertype = :usertype WHERE User_ID = :User_ID");
         $stmt->bindValue(':username', $user->getUsername());
         $stmt->bindValue(':email', $user->getEmail());
         $stmt->bindValue(':password', $user->getPassword());
-        $stmt->bindValue(':usertype', $user->getType());
+        $stmt->bindValue(':type', $user->getType());
         $stmt->bindValue(':User_ID', $user->getUserid());
         return $stmt->execute();
     }
 
-
-    private function insert(User $user)
-    {
-        $stmt = $this->connection->prepare("INSERT INTO User (username, email, password, usertype, availability) VALUES (:username, :email, :password, :usertype, :availability)");
-        $stmt->bindValue(':username', $user->getUsername());
-        $stmt->bindValue(':email', $user->getEmail());
-        $stmt->bindValue(':password', $user->getPassword());
-        $stmt->bindValue(':usertype', $user->getType());
-        $stmt->execute();
-        $user->setUserid($this->connection->lastInsertId());
-        return $user->getUserid();
+    public function insertUser(User $user) {
+        # Print the user object
+        print_r($user);
+        try {
+            $stmt = $this->connection->prepare("INSERT INTO User (username, email, password, type, Campaign_ID) VALUES (:username, :email, :password, :type , :Campaign_ID)");
+            $stmt->bindValue(':username', $user->getUsername());
+            $stmt->bindValue(':email', $user->getEmail());
+            $stmt->bindValue(':password', $user->getPassword());
+            $stmt->bindValue(':type', $user->getType());
+            $stmt->bindValue(':Campaign_ID', null);
+            $stmt->execute();
+        } catch (PDOException $e) {
+            throw new Exception("Error: " . $e->getMessage());
+        }
     }
 }
