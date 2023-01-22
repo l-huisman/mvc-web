@@ -25,5 +25,4 @@ class Campaign
     {
         $this->campaignname = $campaignname;
     }
-
 }

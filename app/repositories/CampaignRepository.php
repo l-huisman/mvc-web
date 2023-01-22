@@ -58,4 +58,26 @@ class CampaignRepository
         $stmt->bindParam(':User_ID', $user_ID);
         $stmt->execute();
     }
+
+    public function getPlayers($campaign_ID)
+    {
+        $sql = "SELECT * FROM User WHERE Campaign_ID = :Campaign_ID";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bindParam(':Campaign_ID', $campaign_ID);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $players = array();
+        foreach ($result as $row) {
+            $players[] = new User($row['User_ID'], $row['username'], $row['email'], $row['password'], $row['type'], $row['Campaign_ID']);
+        }
+        return $players;
+    }
+
+    public function removeAllPlayersFromCampaign($campaign_ID)
+    {
+        $sql = "UPDATE User SET Campaign_ID = NULL WHERE Campaign_ID = :Campaign_ID";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bindParam(':Campaign_ID', $campaign_ID);
+        $stmt->execute();
+    }
 }

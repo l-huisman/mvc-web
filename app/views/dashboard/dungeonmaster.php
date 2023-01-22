@@ -26,9 +26,20 @@ if (isset($_POST['create'])) {
 }
 
 if (isset($_POST['delete'])) {
+    $campaignService->removeAllPlayersFromCampaign($user->getCampaignId());
     $campaignService->deleteCampaign($user->getUserId(), $user->getCampaignId());
     $_SESSION['user'] = $userService->retrieveUser($user->getUserId());
     echo "<meta http-equiv='refresh' content='0'>";
+}
+
+if (isset($_POST['add'])) {
+    $campaignService->addPlayer(clean($_POST['player_id']), $user->getCampaignId());
+    $_SESSION['user'] = $userService->retrieveUser($user->getUserId());
+}
+
+if (isset($_POST['remove'])) {
+    $campaignService->removePlayer(clean($_POST['player_id']));
+    $_SESSION['user'] = $userService->retrieveUser($user->getUserId());
 }
 
 $campaign = null;
@@ -36,7 +47,6 @@ $campaign = null;
 if ($user->getCampaignId()) {
     $campaign = $campaignService->retrieveCampaign($user->getCampaignId());
 }
-
 
 function clean($input)
 {
@@ -55,7 +65,7 @@ function clean($input)
                     <h4 class="card-title d-flex justify-content-center">Campaign</h4>
                     <div class="card-body">
                         <div class="text-center d-flex flex-column justify-content-center">
-                            <form method="post">
+                            <form id="campaignForm" method="post">
                                 <?php
                                 if ($campaign == null) {
                                     echo "<h6>Create a new campaign</h6>";
@@ -66,11 +76,22 @@ function clean($input)
                                     echo "<h6>";
                                     echo $campaign->getCampaignName();
                                     echo "</h6>";
-                                    echo "<button class='btn btn-primary mt-3' type='submit' name='delete'>Delete</button>";
+                                    echo "<button class='btn btn-danger mt-3' onclick=\"areYouSure()\" id='delete' type='button' name='delete'>Delete</button>";
+                                    echo "<script src=\"/js/areyousure.js\"></script>";
                                     echo "<hr>";
                                     echo "<h6 class='text-center'>Add players to the campaign</h6>";
-                                    echo "<input class='my-2' type='text' name='new_player' id='new_player'><br>";
-                                    echo "<button class='btn btn-primary' type='submit' name='add'>Add</button>";
+                                    echo "<input class='my-2 w-100' type='text' name='player_id' id='player_id'><br>";
+                                    echo "<button class='btn btn-success mx-1' type='submit' name='add'>Add</button><button class='btn btn-danger' type='submit' name='remove'>Remove</button>";
+                                    echo "<hr>";
+                                    echo "<h6 class='text-center'>Players in the campaign</h6>";
+                                    echo "<ul class='list-group'>";
+                                    foreach ($campaignService->getPlayers($campaign->getCampaignId()) as $player) {
+                                        echo "<li class='list-group-item bg-dark text-light'>";
+                                        echo $player->getUserId() . ". : ";
+                                        echo $player->getUsername();
+                                        echo "</li>";
+                                    }
+                                    echo "</ul>";
                                 }
                                 ?>
                             </form>
@@ -90,15 +111,5 @@ function clean($input)
                 </div>
             </div>
         </div>
-        <div class="col-md-3 pb-3 text-center text-md-start text-light">
-            <div class="card h-100 bg-dark">
-                <div class="card-body">
-                    <div class="d-flex justify-content-center">
-                        <div style="height:200px;width:200px"><canvas id="payingCustomerChart" width="200" height="200" style="display: block; box-sizing: border-box; height: 200px; width: 200px;"></canvas></div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
-<script src="/js/piechart.js"></script>

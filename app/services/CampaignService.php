@@ -30,4 +30,19 @@ class CampaignService
     {
         $this->campaignRepository->addPlayer($user_ID, $campaign_ID);
     }
+
+    public function removePlayer($user_ID)
+    {
+        $this->campaignRepository->deletePlayerFromCampaign($user_ID);
+    }
+
+    public function getPlayers($campaign_ID)
+    {
+        return $this->campaignRepository->getPlayers($campaign_ID);
+    }
+
+    public function removeAllPlayersFromCampaign($campaign_ID)
+    {
+        $this->campaignRepository->removeAllPlayersFromCampaign($campaign_ID);
+    }
 }
