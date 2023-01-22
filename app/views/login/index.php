@@ -34,14 +34,14 @@ $email_err = $password_err = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     # Check if email is empty
-    if (empty(trim($_POST["email"]))) {
+    if (empty(clean($_POST["email"]))) {
         $email_err = "Please enter email.";
     } else {
         $email = trim($_POST["email"]);
     }
 
     #Check if password is empty
-    if (empty(trim($_POST["password"]))) {
+    if (empty(clean($_POST["password"]))) {
         $password_err = "Please enter your password.";
     } else {
         $password = trim($_POST["password"]);
@@ -55,6 +55,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $password_err = $e->getMessage();
         }
     }
+}
+
+function clean($input)
+{
+    $input = trim($input);
+    $input = stripslashes($input);
+    $input = htmlspecialchars($input);
+    return $input;
 }
 ?>
 

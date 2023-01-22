@@ -29,31 +29,31 @@ $email_err = $password_err = $username_err = $password_confirm_err = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Check if username is empty
-    if (empty(trim(htmlspecialchars($_POST["username"])))) {
+    if (empty(clean($_POST["username"]))) {
         $username_err = "Please enter a username.";
     } else {
-        $username = trim(htmlspecialchars($_POST["username"]));
+        $username = clean($_POST["username"]);
     }
 
     # Check if email is empty
-    if (empty(trim(htmlspecialchars($_POST["email"])))) {
+    if (empty(clean($_POST["email"]))) {
         $email_err = "Please enter email.";
     } else {
-        $email = trim(htmlspecialchars($_POST["email"]));
+        $email = clean($_POST["email"]);
     }
 
     #Check if password is empty
-    if (empty(trim(htmlspecialchars($_POST["password"])))) {
+    if (empty(clean($_POST["password"]))) {
         $password_err = "Please enter your password.";
     } else {
-        $password = trim(htmlspecialchars($_POST["password"]));
+        $password = clean($_POST["password"]);
     }
 
     #Check if password confirmation is empty
-    if (empty(trim(htmlspecialchars($_POST["password"])))) {
+    if (empty(clean($_POST["password"]))) {
         $password_confirm_err = "Please confirm your password.";
     } else {
-        $password_confirm = trim(htmlspecialchars($_POST["password"]));
+        $password_confirm = clean($_POST["password"]);
     }
 
     #Check if passwords match
@@ -78,6 +78,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $password_err = $e->getMessage();
         }
     }
+}
+
+function clean($input)
+{
+    $input = trim($input);
+    $input = stripslashes($input);
+    $input = htmlspecialchars($input);
+    return $input;
 }
 ?>
 
