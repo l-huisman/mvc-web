@@ -41,10 +41,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     #Check if password is empty
-    if (empty(trim($_POST["current-password"]))) {
+    if (empty(trim($_POST["password"]))) {
         $password_err = "Please enter your password.";
     } else {
-        $password = trim($_POST["current-password"]);
+        $password = trim($_POST["password"]);
     }
 
     # Validate credentials
@@ -84,12 +84,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <form method="post">
                                     <div class="form-outline form-white mb-4 align-items-start <?php echo (!empty($email_err)) ? 'has-error' : ''; ?>">
                                         <label class="form-label" for="email">Email</label>
-                                        <input name="email" type="email" id="email" class="form-control form-control-lg" value="<?php echo $email; ?>" />
+                                        <input name="email" type="email" id="email" autocomplete="email" class="form-control form-control-lg" value="<?php echo $email; ?>" />
                                         <span class="help-block text-danger"><?php echo $email_err; ?></span>
                                     </div>
                                     <div class="form-outline form-white mb-4 <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
                                         <label class="form-label" for="password">Password</label>
-                                        <input name="current-password" type="password" id="current-password" class="form-control form-control-lg current-password" />
+                                        <input name="password" type="password" id="password" autocomplete="current-password" class="form-control form-control-lg current-password" />
                                         <span class="help-block text-danger"><?php echo $password_err; ?></span>
                                     </div>
                                     <p class="small mb-4 pb-lg-2"><a class="text-white-50" href="home">Forgot password?</a></p>

@@ -18,6 +18,8 @@ class Auth
             throw new Exception("Invalid email or password");
         }
         $this->session->set("user", $user);
+        header("location: /dashboard");
+        exit;
     }
 
     public function logout()
@@ -32,7 +34,7 @@ class Auth
 
     public function register($username, $email, $password, $type) {
         $hashedPassword = $this->hashPassword($password);
-        $user = new User(0, $username, $email, $hashedPassword, $type);
+        $user = new User(0, $username, $email, $hashedPassword, $type, null);
         $this->userRepository->insertUser($user);
         $this->login($email, $password);
     }
@@ -41,5 +43,4 @@ class Auth
     private function hashPassword($password) {
         return password_hash($password, PASSWORD_DEFAULT);
     }
-
 }

@@ -9,6 +9,18 @@ class UserRepository
         $this->connection = $connection;
     }
 
+    public function retrieveUser($user_ID)
+    {
+        $stmt = $this->connection->prepare("SELECT * FROM User WHERE User_ID = :user_ID");
+        $stmt->bindParam(':user_ID', $user_ID);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (!$result) {
+            return null;
+        }
+        return new User($result['User_ID'], $result['username'], $result['email'], $result['password'], $result['type'], $result['Campaign_ID']);
+    }
+
     public function findByEmail($email)
     {
         $stmt = $this->connection->prepare("SELECT * FROM User WHERE email = :email");
@@ -18,7 +30,7 @@ class UserRepository
         if (!$result) {
             return null;
         }
-        return new User($result['User_ID'], $result['username'], $result['email'], $result['password'], $result['type']);
+        return new User($result['User_ID'], $result['username'], $result['email'], $result['password'], $result['type'], $result['Campaign_ID']);
     }
 
     public function save(User $user)

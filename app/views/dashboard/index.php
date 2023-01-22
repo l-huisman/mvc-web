@@ -1,6 +1,18 @@
 <?php
 
-require_once '/app/models/User.php';
+require_once '../app/services/Session.php';
+require_once '../app/models/User.php';
+
+# check if url is correct which means it has /dashboard at the end
+if (strpos($_SERVER['REQUEST_URI'], '/dashboard') === false) {
+    header('Location: /dashboard');
+    exit();
+}
+
+# Initialize the session
+$session = new Session();
+$session->start();
+
 $user = $_SESSION['user'];
 
 ?>
@@ -12,6 +24,7 @@ $user = $_SESSION['user'];
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh">
     <link rel="stylesheet" href="/css/dashboard-stylesheet.css">
     <link rel="shortcut icon" href="/favicons/d&d-favicon.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
@@ -21,7 +34,6 @@ $user = $_SESSION['user'];
 
 
 <body class="bg-image body-background" style="height: 100vh;">
-
     <!-- navbar -->
     <nav class="navbar bg-dark navbar-expand-md navbar-dark pt-3 pb-3">
         <div class="container-xl">
@@ -107,8 +119,6 @@ $user = $_SESSION['user'];
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-    <script src="/js/piechart.js"></script>
-    <script src="/js/calendar.js"></script>
 </body>
 
 </html>

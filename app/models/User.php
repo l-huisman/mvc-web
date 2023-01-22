@@ -6,24 +6,21 @@ class User
     private $email;
     private $password;
     private $type;
+    private $campaign_ID;
 
-    public function __construct($userid, $username, $email, $password, $type)
+    public function __construct($userid, $username, $email, $password, $type, $campaign_ID)
     {
         $this->userid = $userid;
         $this->username = $username;
         $this->email = $email;
         $this->password = $password;
         $this->type = $type;
+        $this->campaign_ID = $campaign_ID;
     }
 
     public function getUserId()
     {
         return $this->userid;
-    }
-
-    public function setUserId($userid)
-    {
-        $this->userid = $userid;
     }
 
     public function getUsername()
@@ -61,8 +58,8 @@ class User
         return $this->type;
     }
 
-    public function setType($type)
+    public function getCampaignId()
     {
-        $this->type = $type;
+        return $this->campaign_ID;
     }
 }
