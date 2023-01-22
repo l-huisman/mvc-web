@@ -11,8 +11,9 @@ class SessionService
         $this->sessionRepository = new SessionRepository($connection);
     }
 
-    public function addAvailabillity($campaignId)
+    public function addAvailabillity($data, $user_ID)
     {
-        $this->sessionRepository->addAvailabillity($campaignId);
+        // If the data is valid, add it to the database
+        $this->sessionRepository->addAvailabillity($data, $user_ID);
     }
 }
