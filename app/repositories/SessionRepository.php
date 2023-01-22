@@ -39,4 +39,28 @@ class SessionRepository
             $updateDate_stmt->execute();
         }
     }
+
+    public function mostEnteredDates()
+    {
+        $sql = "SELECT Date.date, Timeblock.time, COUNT(Date.date) AS count 
+                FROM Timeblock 
+                JOIN Date ON Timeblock.Timeblock_ID = Date.Timeblock_ID 
+                GROUP BY Date.date 
+                ORDER BY count DESC 
+                LIMIT 5";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+    
+
+    public function chooseSession($date, $time)
+    {# into the Session table insert date and timeblock
+        $sql = "INSERT INTO Session (date, time) VALUES (:date, :time)";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bindParam(":date", $date);
+        $stmt->bindParam(":time", $time);
+        $stmt->execute();
+
+    }
 }

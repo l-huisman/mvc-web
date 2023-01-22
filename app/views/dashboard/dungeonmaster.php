@@ -3,6 +3,7 @@
 include_once '../app/models/User.php';
 include_once '../app/models/Campaign.php';
 include_once '../app/services/UserService.php';
+include_once '../app/services/SessionService.php';
 include_once '../app/services/CampaignService.php';
 
 
@@ -18,6 +19,7 @@ try {
 
 $campaignService = new CampaignService($connection);
 $userService = new UserService($connection);
+$sessionService = new SessionService($connection);
 
 if (isset($_POST['create'])) {
     $campaignService->createCampaign($user->getUserId(), clean($_POST['new_campaign']));
@@ -40,6 +42,13 @@ if (isset($_POST['add'])) {
 if (isset($_POST['remove'])) {
     $campaignService->removePlayer(clean($_POST['player_id']));
     $_SESSION['user'] = $userService->retrieveUser($user->getUserId());
+}
+
+if (isset($_POST['choose'])) {
+    if (false) {
+        print_r($_POST['choose']);
+        $sessionService->chooseSession($_POST['choose']);
+    }
 }
 
 $campaign = null;
@@ -99,13 +108,30 @@ function clean($input)
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="col-md-3 pb-3 text-center text-md-start text-light">
             <div class="card my-3 h-100 bg-dark">
                 <div class="card-header">
                     <h5 class="card-title d-flex justify-content-center">Session date</h5>
                     <div class="card-body">
-                        <!-- Standard = "To be determined...", Otherwise checks the database for a session date -->
                         <h6 class="text-center">
-                            <?php echo "To be determined..."; ?>
+                            <form method="post">
+                                <?php
+                                echo "<ul class='list-group'>";
+                                foreach ($sessionService->mostEnteredDates() as $dates) {
+                                    $date = $dates['date'];
+                                    $time = $dates['time'];
+                                    echo "<li class='list-group-item bg-dark text-light'>";
+                                    echo $date;
+                                    echo " : ";
+                                    echo $time;
+                                    echo ":00<br>";
+                                    echo "<button class='btn btn-success mt-2' type='submit' value='$date' name='choose'>Choose</button>";
+                                    echo "</li>";
+                                }
+                                echo "</ul>";
+                                ?>
+                            </form>
                         </h6>
                     </div>
                 </div>
