@@ -8,18 +8,8 @@ require_once '../app/services/Session.php';
 $session = new Session();
 $session->start();
 
-# Include config file
-require_once "../app/dbconfig.php";
-
-try {
-    $connection = new PDO("mysql:host=$servername;dbname=$databasename", $username, $password);
-    $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
-}
-
 # Check if the user is already logged in, if yes then redirect him to welcome page
-$auth = new Auth(new UserRepository($connection), $session);
+$auth = new Auth(new UserRepository(), $session);
 if ($auth->isLoggedIn()) {
     include "../app/views/dashboard/index.php";
     exit;

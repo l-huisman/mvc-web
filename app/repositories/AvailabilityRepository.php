@@ -1,11 +1,6 @@
 <?php
 
-class AvailabilityRepository
+class AvailabilityRepository extends BaseRepository
 {
-    private $connection;
-
-    public function __construct($connection)
-    {
-        $this->connection = $connection;
-    }
+    
 }

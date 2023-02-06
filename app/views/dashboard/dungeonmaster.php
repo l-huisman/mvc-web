@@ -6,20 +6,9 @@ include_once '../app/services/UserService.php';
 include_once '../app/services/SessionService.php';
 include_once '../app/services/CampaignService.php';
 
-
-# Include config file
-require_once "../app/dbconfig.php";
-
-try {
-    $connection = new PDO("mysql:host=$servername;dbname=$databasename", $username, $password);
-    $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
-}
-
-$campaignService = new CampaignService($connection);
-$userService = new UserService($connection);
-$sessionService = new SessionService($connection);
+$campaignService = new CampaignService();
+$userService = new UserService();
+$sessionService = new SessionService();
 
 if (isset($_POST['create'])) {
     $campaignService->createCampaign($user->getUserId(), clean($_POST['new_campaign']));

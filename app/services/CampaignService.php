@@ -6,9 +6,9 @@ class CampaignService
 {
     private $campaignRepository;
 
-    public function __construct($connection)
+    public function __construct()
     {
-        $this->campaignRepository = new CampaignRepository($connection);
+        $this->campaignRepository = new CampaignRepository();
     }
     
     public function retrieveCampaign($campaign_ID)

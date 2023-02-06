@@ -1,14 +1,9 @@
 <?php
 
-class UserRepository
+require_once 'BaseRepository.php';
+
+class UserRepository extends BaseRepository
 {
-    private $connection;
-
-    public function __construct($connection)
-    {
-        $this->connection = $connection;
-    }
-
     public function retrieveUser($user_ID)
     {
         $stmt = $this->connection->prepare("SELECT * FROM User WHERE User_ID = :user_ID");

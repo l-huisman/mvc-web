@@ -5,19 +5,9 @@ include_once '../app/services/UserService.php';
 include_once '../app/services/SessionService.php';
 include_once '../app/services/CampaignService.php';
 
-# Include config file
-require_once "../app/dbconfig.php";
-
-try {
-    $connection = new PDO("mysql:host=$servername;dbname=$databasename", $username, $password);
-    $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
-}
-
-$campaignService = new CampaignService($connection);
-$sessionService = new SessionService($connection);
-$userService = new UserService($connection);
+$campaignService = new CampaignService();
+$sessionService = new SessionService();
+$userService = new UserService();
 
 if (isset($_POST['leave'])) {
     $campaignService->removePlayer($user->getUserId());

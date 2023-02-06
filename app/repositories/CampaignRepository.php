@@ -2,15 +2,8 @@
 
 include_once '/app/repositories/BaseRepository.php';
 
-class CampaignRepository
+class CampaignRepository extends BaseRepository
 {
-
-    private $connection;
-    
-    public function __construct($connection)
-    {
-        $this->connection = $connection;
-    }
 
     public function retrieveCampaign($campaign_ID)
     {

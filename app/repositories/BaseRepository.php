@@ -12,14 +12,13 @@ class BaseRepository
     public function getConnection()
     {
         # Include config file
-        require_once "/app/dbconfig.php";
+        require_once __DIR__ . "/dbconfig.php";
 
         try {
-            $connection = new PDO("mysql:host=$servername;dbname=$databasename", $username, $password);
-            $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->connection = new PDO("mysql:host=$servername;dbname=$databasename", $username, $password);
+            $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
             echo "Connection failed: " . $e->getMessage();
         }
-
     }
 }

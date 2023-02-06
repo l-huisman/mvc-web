@@ -1,13 +1,7 @@
 <?php
 
-class SessionRepository
+class SessionRepository extends BaseRepository
 {
-    private $connection;
-
-    public function __construct($connection)
-    {
-        $this->connection = $connection;
-    }
 
     public function addAvailabillity($data, $user_ID)
     {
